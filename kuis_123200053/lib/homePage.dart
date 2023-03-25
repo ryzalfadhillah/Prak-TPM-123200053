@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              color: Colors.green[50],
               width: double.infinity,
               padding: EdgeInsets.all(16.0),
               child: Center(
@@ -31,8 +30,7 @@ class HomePage extends StatelessWidget {
                     crossAxisCount: 3,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
-                    childAspectRatio: MediaQuery.of(context).size.width /
-                        (MediaQuery.of(context).size.height / 1.5)),
+                    childAspectRatio: 3 / 4),
                 itemCount: listDisease.length,
                 itemBuilder: (context, index) {
                   final Diseases diseases = listDisease[index];
@@ -43,17 +41,26 @@ class HomePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => DetailPage(
                                     diseases: diseases,
+                                    isFavorite: false,
+                                    onToggleFavorite: () => {},
                                   )));
                     },
                     child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
                       child: Column(
                         children: [
                           Expanded(
-                            child: Image.network(
-                              diseases.imgUrls,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: 200,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20)),
+                              child: Image.network(
+                                diseases.imgUrls,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: 200,
+                              ),
                             ),
                           ),
                           Padding(
