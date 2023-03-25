@@ -116,13 +116,13 @@ class _DetailPageState extends State<DetailPage> {
                     title: Text('Ciri-Ciri: ',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold)),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('- ' + widget.diseases.nutshell[0]),
-                        Text('- ' + widget.diseases.nutshell[1]),
-                        Text('- ' + widget.diseases.nutshell[2]),
-                      ],
+                    subtitle: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: widget.diseases.nutshell.length,
+                      itemBuilder: (context, index) {
+                        return Text(
+                            '${index + 1}. ' + widget.diseases.nutshell[index]);
+                      },
                     )),
                 ListTile(
                   title: Text('Diseases ID: ',
